@@ -6,9 +6,17 @@ import incomeRoutes from "./routes/income.js";
 import expenseRoutes from "./routes/expense.js";
 import dashboardRoutes from "./routes/dashboard.js";
 import voiceCommandRoutes from "./routes/voiceCommand.js";
+import cors from "cors";
+
 
 dotenv.config();
 const app = express();
+
+app.use(cors({
+  origin: ["http://localhost:5173", "https://pennytracker-ck56.onrender.com"], 
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 const PORT = process.env.PORT || 5000;
 

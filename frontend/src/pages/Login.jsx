@@ -4,6 +4,8 @@ import axios from 'axios';
 import wallet from "../assets/wallet.png";
 import coin from "../assets/coin.png";
 
+const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const Login = ({setUser}) => {
 
   const [error,setError] = useState("");
@@ -21,7 +23,7 @@ const Login = ({setUser}) => {
   const handleSubmit = async (e)=>{
     e.preventDefault();
     try{
-      const res =  await axios.post("/api/users/login",formData);
+      const res =  await axios.post(`${API}/users/login`,formData);
       localStorage.setItem("token",res.data.token);
       setUser(res.data);
       navigate('/');
